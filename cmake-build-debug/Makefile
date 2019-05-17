@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /Users/mshagga/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /Users/mshagga/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/AlexandrSergeev/CLionProjects/get_next_line
+CMAKE_SOURCE_DIR = /Users/mshagga/CLionProjects/get_next_line
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/mshagga/CLionProjects/get_next_line/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-buil
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Users/mshagga/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/Users/mshagga/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles /Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mshagga/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles /Users/mshagga/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mshagga/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,32 +123,32 @@ get_next_line/fast:
 	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/build
 .PHONY : get_next_line/fast
 
-main.o: main.c.o
+get_next_line.o: get_next_line.c.o
 
-.PHONY : main.o
+.PHONY : get_next_line.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/main.c.o
-.PHONY : main.c.o
+get_next_line.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/get_next_line.c.o
+.PHONY : get_next_line.c.o
 
-main.i: main.c.i
+get_next_line.i: get_next_line.c.i
 
-.PHONY : main.i
+.PHONY : get_next_line.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/main.c.i
-.PHONY : main.c.i
+get_next_line.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/get_next_line.c.i
+.PHONY : get_next_line.c.i
 
-main.s: main.c.s
+get_next_line.s: get_next_line.c.s
 
-.PHONY : main.s
+.PHONY : get_next_line.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/main.c.s
-.PHONY : main.c.s
+get_next_line.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/get_next_line.c.s
+.PHONY : get_next_line.c.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... get_next_line"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... get_next_line.o"
+	@echo "... get_next_line.i"
+	@echo "... get_next_line.s"
 .PHONY : help
 
 
