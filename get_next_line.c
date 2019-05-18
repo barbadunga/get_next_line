@@ -29,15 +29,13 @@ char	*ft_realloc(char **old, size_t size)
 	return (new);
 }
 
-void	ft_clean(char **tab, char **ptr)
+void 	ft_deline(char **tab, char **ptr)
 {
 	char	*tmp;
 
 	tmp = ft_strdup(*ptr);
-	printf("dup : %s\n", tmp);
 	free(*tab);
-	*tab = NULL;
-	*tab = ft_strdup(tmp);
+	*tab = tmp;
 }
 
 int		get_next_line(const int fd, char **line)
@@ -46,9 +44,8 @@ int		get_next_line(const int fd, char **line)
 	char		buf[BUF_SIZE + 1];
 	int			byte;
 	char		*ptr;
-	char		*tmp;
 
-	if (fd < 0 || fd > 1023 || !line || !*line)
+	if (fd < 0 || fd > OPEN_MAX || !line || !*line || read(fd, buf, 0) < 0)
 		return (-1);
 	while ((byte = read(fd, buf, BUF_SIZE)) > 0)
 	{
@@ -59,15 +56,17 @@ int		get_next_line(const int fd, char **line)
 			return (-1);
 		}
 		tab = ft_strcat(tab, buf);
-		if ((ptr = ft_strchr(tab, '\n')))
+		if ((ptr = ft_strchr(tab, '\n')) || (ptr = ft_strchr(tab, '\0')))
 		{
-			printf("ptr %s\n", ptr);
 			*line = ft_strnew(ptr - tab);
-			*line = ft_strncpy(*line, tab, ptr - tab);
+			*line = ft_strncpy(*line, tab, ptr++ - tab);
+			ft_deline(&tab, &ptr);
 			return (1);
 		}
 	}
-	return (1);
+	free(tab);
+	tab = NULL;
+	return (0);
 }
 
 int main()
@@ -77,10 +76,8 @@ int main()
 
 	line = "some string";
 	fd = open("file", O_RDONLY);
-	printf("GNL : %d\n", get_next_line(fd, &line));
-	printf("line = %s\n", line);
-	printf("GNL : %d\n", get_next_line(fd, &line));
-	printf("line = %s\n", line);
+	while (get_next_line(fd, &line) > 0)
+		printf("%s\n", line);
 	close(fd);
 	return (0);
 }
