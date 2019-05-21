@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include "./libft/libft.h"
 # include <sys/syslimits.h>
-# define BUF_SIZE 3
+# define BUFF_SIZE 10
 
 int	get_next_line(const int fd, char **line);
 

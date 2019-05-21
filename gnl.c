@@ -16,7 +16,7 @@
 
 char	*ft_realloc(char **old, size_t size)
 {
-	char *new;
+	char	*new;
 
 	if (!(new = ft_strnew(size)))
 		return (NULL);
@@ -29,45 +29,29 @@ char	*ft_realloc(char **old, size_t size)
 	return (new);
 }
 
-void 	ft_deline(char **tab, char **ptr)
+int		cut_line(char **str, char *pos, char **line)
 {
 	char	*tmp;
 
-	tmp = ft_strdup(*ptr);
-	free(*tab);
-	*tab = tmp;
+	tmp = ft_strdup(++pos);
+	free(*str);
+	*str = tmp;
 }
 
 int		get_next_line(const int fd, char **line)
 {
-	static char	*tab;
-	char		buf[BUF_SIZE + 1];
-	int			byte;
-	char		*ptr;
+	static char *tab[OPEN_MAX];
+	char		buf[BUFF_SIZE + 1];
+	char		pos;
+	int			sz;
 
 	if (fd < 0 || fd > OPEN_MAX || !line || !*line || read(fd, buf, 0) < 0)
 		return (-1);
-
-	while ((byte = read(fd, buf, BUF_SIZE)) > 0)
+	while ((sz = read(fd, buf, BUFF_SIZE)) < 0)
 	{
-		buf[byte] = '\0';
-		if (!(tab = ft_realloc(&tab, (!tab ? 0 : ft_strlen(tab)) + byte)))
-		{
-			ft_strdel(&tab);
-			return (-1);
-		}
-		tab = ft_strcat(tab, buf);
-		if ((ptr = ft_strchr(tab, '\n')) || (ptr = ft_strchr(tab, '\0')))
-		{
-			*line = ft_strnew(ptr - tab);
-			*line = ft_strncpy(*line, tab, ptr++ - tab);
-			ft_deline(&tab, &ptr);
-			return (1);
-		}
+		buf[sz] = '\0';
+
 	}
-	free(tab);
-	tab = NULL;
-	return (0);
 }
 
 int main()

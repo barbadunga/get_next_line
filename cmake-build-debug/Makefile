@@ -123,32 +123,59 @@ get_next_line/fast:
 	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/build
 .PHONY : get_next_line/fast
 
-get_next_line.o: get_next_line.c.o
+gnl.o: gnl.c.o
 
-.PHONY : get_next_line.o
+.PHONY : gnl.o
 
 # target to build an object file
-get_next_line.c.o:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/get_next_line.c.o
-.PHONY : get_next_line.c.o
+gnl.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/gnl.c.o
+.PHONY : gnl.c.o
 
-get_next_line.i: get_next_line.c.i
+gnl.i: gnl.c.i
 
-.PHONY : get_next_line.i
+.PHONY : gnl.i
 
 # target to preprocess a source file
-get_next_line.c.i:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/get_next_line.c.i
-.PHONY : get_next_line.c.i
+gnl.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/gnl.c.i
+.PHONY : gnl.c.i
 
-get_next_line.s: get_next_line.c.s
+gnl.s: gnl.c.s
 
-.PHONY : get_next_line.s
+.PHONY : gnl.s
 
 # target to generate assembly for a file
-get_next_line.c.s:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/get_next_line.c.s
-.PHONY : get_next_line.c.s
+gnl.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/gnl.c.s
+.PHONY : gnl.c.s
+
+test.o: test.c.o
+
+.PHONY : test.o
+
+# target to build an object file
+test.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/test.c.o
+.PHONY : test.c.o
+
+test.i: test.c.i
+
+.PHONY : test.i
+
+# target to preprocess a source file
+test.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/test.c.i
+.PHONY : test.c.i
+
+test.s: test.c.s
+
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/test.c.s
+.PHONY : test.c.s
 
 # Help Target
 help:
@@ -159,9 +186,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... get_next_line"
-	@echo "... get_next_line.o"
-	@echo "... get_next_line.i"
-	@echo "... get_next_line.s"
+	@echo "... gnl.o"
+	@echo "... gnl.i"
+	@echo "... gnl.s"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 
