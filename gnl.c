@@ -33,11 +33,15 @@ int		cut_line(char **buf_str, size_t str_len, char **line)
 {
 	char	*tmp;
 
-	*line = ft_strnew(str_len);
+	if (!(*line = ft_strnew(str_len)))
+		return (-1);
 	*line = ft_strncpy(*line, *buf_str, str_len);
 	str_len++;
 	if (!(tmp = ft_strsub(*buf_str, str_len, ft_strlen(*buf_str + str_len))))
-		return (0);
+	{
+		ft_strdel(buf_str);
+		return (-1);
+	}
 	free(*buf_str);
 	*buf_str = tmp;
 	return (1);
@@ -63,12 +67,14 @@ int		get_next_line(const int fd, char **line)
 
 	if (fd < 0 || fd > OPEN_MAX || !line || !*line || read(fd, buf, 0) < 0)
 		return (-1);
-	if ((pos = check_line(&tab[fd])))
+	/*if ((pos = check_line(&tab[fd])))
 	{
 		if (!(cut_line(&tab[fd], pos, line)))
 			return (sizeof(ft_strdel(&tab[fd])) - 1);
 		return (1);
-	}
+	}*/
+	if ((pos = check_line(&tab[fd])))
+		return (cut_line(&tab[fd], pos, line));
 	while ((sz = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[sz] = '\0';
@@ -76,11 +82,7 @@ int		get_next_line(const int fd, char **line)
 		if (!(tab[fd] = ft_strjoin(tab[fd], buf)))
 			return (sizeof(ft_strdel(&tab[fd])) - 1);
 		if ((pos = check_line(&tab[fd])))
-		{
-			if (!(cut_line(&tab[fd], pos, line)))
-				return (sizeof(ft_strdel(&tab[fd])) - 1);
-			return (1);
-		}
+			return (cut_line(&tab[fd], pos, line));
 	}
 	return (0);
 }
