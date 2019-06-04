@@ -87,7 +87,7 @@ int		get_next_line(const int fd, char **line)
 	return (0);
 }
 
-int main()
+/*int main()
 {
 	int		fd1;
 	int		fd2;
@@ -100,7 +100,7 @@ int main()
 	while ((val = get_next_line(fd1, &line)) > 0)
 		printf("GNL[%d] : %s\n", val, line);
 	printf("gnl_out = %d\n", val);
-	/*val = get_next_line(fd1, &line);
+	val = get_next_line(fd1, &line);
 	printf("GNL[%d] : %s\n", fd1, line);
 	val = get_next_line(fd2, &line);
 	printf("GNL[%d] : %s\n", fd2, line);
@@ -110,7 +110,7 @@ int main()
 	printf("GNL[%d] : %s\n", fd2, line);
 	val = get_next_line(fd2, &line);
 	printf("GNL[%d] : %s\n", fd2, line);
-	close(fd2); */
+	close(fd2);
 	close(fd1);
 	return (0);
-}
+} */

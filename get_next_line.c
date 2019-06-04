@@ -1,84 +1,103 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   new.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: AlexandrSergeev <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/14 10:24:16 by AlexandrSergeev   #+#    #+#             */
-/*   Updated: 2019/05/14 10:24:16 by AlexandrSergeev  ###   ########.fr       */
+/*   Created: 2019/05/27 15:57:38 by AlexandrSergeev   #+#    #+#             */
+/*   Updated: 2019/05/27 15:57:38 by AlexandrSergeev  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+/*
+ * 1. Need to check on valgrind
+ * 2. Remake logic
+*/
+
 #include "get_next_line.h"
+#include <stdio.h>
 
-char	*ft_realloc(char **old, size_t size)
+char	*ft_realloc(char **old_mem, size_t size)
 {
-	char *new;
+	char	*new_mem;
 
-	if (!(new = ft_strnew(size)))
+	if (!(new_mem = ft_strnew(size)))
 		return (NULL);
-	if (*old)
+	if (*old_mem)
 	{
-		ft_memcpy(new, *old, ft_strlen(*old));
-		free(*old);
-		*old = NULL;
+		ft_memcpy(new_mem, *old_mem, ft_strlen(*old_mem));
+		free(*old_mem);
+		*old_mem = NULL;
 	}
-	return (new);
+	return (new_mem);
 }
 
-void 	ft_deline(char **tab, char **ptr)
+int		get_line(char **s_str, char **line)
 {
-	char	*tmp;
+	size_t	s_len;
+	char	*t_str;
+	char	*n_pos;
 
-	tmp = ft_strdup(*ptr);
-	free(*tab);
-	*tab = tmp;
+	if (!*s_str)
+		return(NO_LINE);
+	n_pos = ft_strchr(*s_str, '\n');
+	s_len = n_pos ? n_pos - *s_str : 0;
+	if (!n_pos)
+		return (NO_LINE);
+	if (!(*line = ft_strnew(s_len)))
+		return (ERR);
+	*line = ft_strncpy(*line, *s_str, s_len++);
+	if (!(t_str = ft_strsub(*s_str, s_len, ft_strlen(n_pos))))
+		return (ERR);
+	free(*s_str);
+	*s_str = t_str;
+	return (OK);
+}
+
+int		read_line(int fd, char **s_str, char **line)
+{
+	char	buff[BUFF_SIZE + 1];
+	int		res;
+	size_t	s_len;
+
+	res = 1;
+	while (res >  0)
+	{
+		if ((res = read(fd, buff, BUFF_SIZE)) < 0)
+			return (ERR);
+		if (res)
+		{
+			buff[res] = '\0';
+			s_len = *s_str ? ft_strlen(*s_str) : 0;
+			*s_str = ft_realloc(s_str, s_len + res);
+			*s_str = ft_strcat(*s_str, buff);
+			if (ft_strchr(*s_str, '\n'))
+				return (OK);
+		}
+	}
+	if (*s_str)
+		*line = ft_strdup(*s_str);
+	return (res);
 }
 
 int		get_next_line(const int fd, char **line)
 {
-	static char	*tab;
-	char		buf[BUF_SIZE + 1];
-	int			byte;
-	char		*ptr;
+	static char	*store[OPEN_MAX];
+	char		buf[BUFF_SIZE + 1];
+	int			res;
 
 	if (fd < 0 || fd > OPEN_MAX || !line || !*line || read(fd, buf, 0) < 0)
-		return (-1);
-
-	while ((byte = read(fd, buf, BUF_SIZE)) > 0)
-	{
-		buf[byte] = '\0';
-		if (!(tab = ft_realloc(&tab, (!tab ? 0 : ft_strlen(tab)) + byte)))
-		{
-			ft_strdel(&tab);
 			return (-1);
-		}
-		tab = ft_strcat(tab, buf);
-		if ((ptr = ft_strchr(tab, '\n')) || (ptr = ft_strchr(tab, '\0')))
-		{
-			*line = ft_strnew(ptr - tab);
-			*line = ft_strncpy(*line, tab, ptr++ - tab);
-			ft_deline(&tab, &ptr);
-			return (1);
-		}
+	res = get_line(&store[fd], line);
+	if (res == OK)
+		return (OK);
+	if (res == NO_LINE)
+	{
+		res = read_line(fd, &store[fd], line);
+		res = res > 0 ? get_line(&store[fd], line) : res;
 	}
-	free(tab);
-	tab = NULL;
-	return (0);
-}
-
-int main()
-{
-	int		fd;
-	char	*line;
-
-	line = "some string";
-	fd = open("file", O_RDONLY);
-	while (get_next_line(fd, &line) > 0)
-		printf("%s\n", line);
-	close(fd);
-	return (0);
+	if (!res)
+		ft_strdel(&store[fd]);
+	return (res);
 }

@@ -6,13 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/Users/mshagga/CLionProjects/get_next_line/./libft/libft.h
+/Users/AlexandrSergeev/CLionProjects/get_next_line/./libft/libft.h
 unistd.h
 -
 stdlib.h
 -
 
-/Users/mshagga/CLionProjects/get_next_line/get_next_line.h
+/Users/AlexandrSergeev/CLionProjects/get_next_line/get_next_line.c
+get_next_line.h
+/Users/AlexandrSergeev/CLionProjects/get_next_line/get_next_line.h
+stdio.h
+-
+
+/Users/AlexandrSergeev/CLionProjects/get_next_line/get_next_line.h
 fcntl.h
 -
 unistd.h
@@ -20,15 +26,7 @@ unistd.h
 stdlib.h
 -
 ./libft/libft.h
-/Users/mshagga/CLionProjects/get_next_line/./libft/libft.h
+/Users/AlexandrSergeev/CLionProjects/get_next_line/./libft/libft.h
 sys/syslimits.h
 -
-
-/Users/mshagga/CLionProjects/get_next_line/gnl.c
-stdio.h
--
-string.h
--
-get_next_line.h
-/Users/mshagga/CLionProjects/get_next_line/get_next_line.h
 

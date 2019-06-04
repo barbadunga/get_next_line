@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Users/mshagga/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /Users/mshagga/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/mshagga/CLionProjects/get_next_line
+CMAKE_SOURCE_DIR = /Users/AlexandrSergeev/CLionProjects/get_next_line
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/mshagga/CLionProjects/get_next_line/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/get_next_line.dir/depend.make
@@ -57,31 +57,31 @@ include CMakeFiles/get_next_line.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/get_next_line.dir/flags.make
 
-CMakeFiles/get_next_line.dir/gnl.c.o: CMakeFiles/get_next_line.dir/flags.make
-CMakeFiles/get_next_line.dir/gnl.c.o: ../gnl.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mshagga/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/get_next_line.dir/gnl.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/gnl.c.o   -c /Users/mshagga/CLionProjects/get_next_line/gnl.c
+CMakeFiles/get_next_line.dir/get_next_line.c.o: CMakeFiles/get_next_line.dir/flags.make
+CMakeFiles/get_next_line.dir/get_next_line.c.o: ../get_next_line.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/get_next_line.dir/get_next_line.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/get_next_line.c.o   -c /Users/AlexandrSergeev/CLionProjects/get_next_line/get_next_line.c
 
-CMakeFiles/get_next_line.dir/gnl.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/get_next_line.dir/gnl.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mshagga/CLionProjects/get_next_line/gnl.c > CMakeFiles/get_next_line.dir/gnl.c.i
+CMakeFiles/get_next_line.dir/get_next_line.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/get_next_line.dir/get_next_line.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/AlexandrSergeev/CLionProjects/get_next_line/get_next_line.c > CMakeFiles/get_next_line.dir/get_next_line.c.i
 
-CMakeFiles/get_next_line.dir/gnl.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/get_next_line.dir/gnl.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mshagga/CLionProjects/get_next_line/gnl.c -o CMakeFiles/get_next_line.dir/gnl.c.s
+CMakeFiles/get_next_line.dir/get_next_line.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/get_next_line.dir/get_next_line.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/AlexandrSergeev/CLionProjects/get_next_line/get_next_line.c -o CMakeFiles/get_next_line.dir/get_next_line.c.s
 
 # Object files for target get_next_line
 get_next_line_OBJECTS = \
-"CMakeFiles/get_next_line.dir/gnl.c.o"
+"CMakeFiles/get_next_line.dir/get_next_line.c.o"
 
 # External object files for target get_next_line
 get_next_line_EXTERNAL_OBJECTS =
 
-get_next_line: CMakeFiles/get_next_line.dir/gnl.c.o
+get_next_line: CMakeFiles/get_next_line.dir/get_next_line.c.o
 get_next_line: CMakeFiles/get_next_line.dir/build.make
 get_next_line: ../libft/libft.a
 get_next_line: CMakeFiles/get_next_line.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/mshagga/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable get_next_line"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable get_next_line"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/get_next_line.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -94,6 +94,6 @@ CMakeFiles/get_next_line.dir/clean:
 .PHONY : CMakeFiles/get_next_line.dir/clean
 
 CMakeFiles/get_next_line.dir/depend:
-	cd /Users/mshagga/CLionProjects/get_next_line/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/mshagga/CLionProjects/get_next_line /Users/mshagga/CLionProjects/get_next_line /Users/mshagga/CLionProjects/get_next_line/cmake-build-debug /Users/mshagga/CLionProjects/get_next_line/cmake-build-debug /Users/mshagga/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles/get_next_line.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/AlexandrSergeev/CLionProjects/get_next_line /Users/AlexandrSergeev/CLionProjects/get_next_line /Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug /Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug /Users/AlexandrSergeev/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles/get_next_line.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/get_next_line.dir/depend
 
