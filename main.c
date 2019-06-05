@@ -6,14 +6,13 @@
 /*   By: rgalyeon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 09:04:05 by rgalyeon          #+#    #+#             */
-/*   Updated: 2019/04/20 20:30:55 by rgalyeon         ###   ########.fr       */
+/*   Updated: 2018/12/15 03:43:07 by rgalyeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "get_next_line.h"
 #include <stdio.h>
-#include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 #define WHITE "\x1B[0m"
@@ -21,6 +20,8 @@
 #define GREEN "\x1B[32m"
 #define BLUE "\x1B[34m"
 #define YELLOW "\x1B[33m"
+
+#include <string.h>
 
 void	test01(void)
 {
@@ -319,6 +320,7 @@ void	test06(void)
 		free(line);
 		n++;
 	}
+	// free(line);
 	close(fd);
 	close(fd2);
 
@@ -480,7 +482,7 @@ void	test09(void)
 	file_size = read(fd3, NULL, 10);
 	close (fd3);
 
-	if (file_size == 0 && n == 0)
+	if (file_size == 0 && n == 1)
 	{
 		remove("tests/09_test.txt");
 		remove("tests/09_test.txt.my");
@@ -489,13 +491,13 @@ void	test09(void)
 	}
 	else
 	{
-		if (n != 0)
+		if (n != 1)
 		{
 			printf("TEST_09_ZERO_BYTES" RED " [KO]\n" WHITE);
-			printf(RED "Yours n - <%d>, ours - <%d>\n" WHITE, n, 0);
+			printf(RED "Yours n - <%d>, ours - <%d>\n" WHITE, n, 1);
 		}
 		else
-			printf("TEST_09_~ERO_BYTES" RED " DIFFS [KO] :(\n" WHITE);
+			printf("TEST_09_ZERO_BYTES" YELLOW " DIFFS [KO] \n" WHITE);
 	}
 }
 
@@ -568,7 +570,8 @@ void	test11(void)
 
 int		main()
 {
-	test01();
+	system("clear");
+	//test01();
 	test02();
 	test03();
 	test04();

@@ -23,6 +23,14 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+typedef struct	s_vec
+{
+	void		*data;
+	size_t		capacity;
+	size_t		total;
+	int			type;
+}				t_vec;
+
 void			ft_bzero(void *str, size_t n);
 void			ft_putchar(char c);
 void			ft_putstr(char const *str);
@@ -85,8 +93,13 @@ void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
+void			ft_vec_del(t_vec **vec);
+t_vec			*ft_vec_add(t_vec **vec, void *item);
+t_vec			*ft_vec_init(size_t size, int type);
+
 void			ft_lstcat(t_list **alst, t_list *new);
 int				ft_isspace(int c);
 void			*ft_memdup(const void *src, size_t n);
+char			*ft_realloc_str(char **s_old, size_t len);
 
 #endif

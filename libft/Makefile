@@ -12,7 +12,7 @@
 
 CC = gcc
 NAME = libft.a
-CFLAGS = -Wall -Wextra -Werror -I. -c
+CFLAGS = -Wall -Wextra -Werror -I. -c -g
 SOURCES = ft_atoi.c \
     ft_bzero.c \
     ft_isalnum.c \
@@ -74,6 +74,10 @@ SOURCES = ft_atoi.c \
     ft_lstmap.c \
     ft_lstcat.c \
     ft_memdup.c \
+    ft_realloc_str.c \
+    ft_vec_add.c  \
+    ft_vec_del.c  \
+    ft_vec_init.c  \
 
 OBJECTS = $(SOURCES:%.c=%.o)
 
