@@ -12,12 +12,6 @@ unistd.h
 stdlib.h
 -
 
-/Users/mshagga/CLionProjects/get_next_line/ctest.c
-get_next_line.h
-/Users/mshagga/CLionProjects/get_next_line/get_next_line.h
-stdio.h
--
-
 /Users/mshagga/CLionProjects/get_next_line/get_next_line.h
 fcntl.h
 -
@@ -30,15 +24,11 @@ stdlib.h
 sys/syslimits.h
 -
 
-/Users/mshagga/CLionProjects/get_next_line/libft/ft_vec_add.c
-libft.h
-/Users/mshagga/CLionProjects/get_next_line/libft/libft.h
+/Users/mshagga/CLionProjects/get_next_line/gnl_beta.c
 stdio.h
 -
-
-/Users/mshagga/CLionProjects/get_next_line/libft/libft.h
-unistd.h
+string.h
 -
-stdlib.h
--
+get_next_line.h
+/Users/mshagga/CLionProjects/get_next_line/get_next_line.h
 

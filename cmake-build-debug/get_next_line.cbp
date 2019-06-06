@@ -82,10 +82,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/mshagga/CLionProjects/get_next_line/ctest.c">
+		<Unit filename="/Users/mshagga/CLionProjects/get_next_line/gnl_beta.c">
 			<Option target="get_next_line"/>
 		</Unit>
-		<Unit filename="/Users/mshagga/CLionProjects/get_next_line/libft/ft_vec_add.c">
+		<Unit filename="/Users/mshagga/CLionProjects/get_next_line/libft/ft_memdup.c">
 			<Option target="get_next_line"/>
 		</Unit>
 		<Unit filename="/Users/mshagga/CLionProjects/get_next_line/CMakeLists.txt">

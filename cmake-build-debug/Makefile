@@ -123,59 +123,59 @@ get_next_line/fast:
 	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/build
 .PHONY : get_next_line/fast
 
-ctest.o: ctest.c.o
+gnl_beta.o: gnl_beta.c.o
 
-.PHONY : ctest.o
-
-# target to build an object file
-ctest.c.o:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/ctest.c.o
-.PHONY : ctest.c.o
-
-ctest.i: ctest.c.i
-
-.PHONY : ctest.i
-
-# target to preprocess a source file
-ctest.c.i:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/ctest.c.i
-.PHONY : ctest.c.i
-
-ctest.s: ctest.c.s
-
-.PHONY : ctest.s
-
-# target to generate assembly for a file
-ctest.c.s:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/ctest.c.s
-.PHONY : ctest.c.s
-
-libft/ft_vec_add.o: libft/ft_vec_add.c.o
-
-.PHONY : libft/ft_vec_add.o
+.PHONY : gnl_beta.o
 
 # target to build an object file
-libft/ft_vec_add.c.o:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.o
-.PHONY : libft/ft_vec_add.c.o
+gnl_beta.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/gnl_beta.c.o
+.PHONY : gnl_beta.c.o
 
-libft/ft_vec_add.i: libft/ft_vec_add.c.i
+gnl_beta.i: gnl_beta.c.i
 
-.PHONY : libft/ft_vec_add.i
+.PHONY : gnl_beta.i
 
 # target to preprocess a source file
-libft/ft_vec_add.c.i:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.i
-.PHONY : libft/ft_vec_add.c.i
+gnl_beta.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/gnl_beta.c.i
+.PHONY : gnl_beta.c.i
 
-libft/ft_vec_add.s: libft/ft_vec_add.c.s
+gnl_beta.s: gnl_beta.c.s
 
-.PHONY : libft/ft_vec_add.s
+.PHONY : gnl_beta.s
 
 # target to generate assembly for a file
-libft/ft_vec_add.c.s:
-	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.s
-.PHONY : libft/ft_vec_add.c.s
+gnl_beta.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/gnl_beta.c.s
+.PHONY : gnl_beta.c.s
+
+libft/ft_memdup.o: libft/ft_memdup.c.o
+
+.PHONY : libft/ft_memdup.o
+
+# target to build an object file
+libft/ft_memdup.c.o:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_memdup.c.o
+.PHONY : libft/ft_memdup.c.o
+
+libft/ft_memdup.i: libft/ft_memdup.c.i
+
+.PHONY : libft/ft_memdup.i
+
+# target to preprocess a source file
+libft/ft_memdup.c.i:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_memdup.c.i
+.PHONY : libft/ft_memdup.c.i
+
+libft/ft_memdup.s: libft/ft_memdup.c.s
+
+.PHONY : libft/ft_memdup.s
+
+# target to generate assembly for a file
+libft/ft_memdup.c.s:
+	$(MAKE) -f CMakeFiles/get_next_line.dir/build.make CMakeFiles/get_next_line.dir/libft/ft_memdup.c.s
+.PHONY : libft/ft_memdup.c.s
 
 # Help Target
 help:
@@ -186,12 +186,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... get_next_line"
-	@echo "... ctest.o"
-	@echo "... ctest.i"
-	@echo "... ctest.s"
-	@echo "... libft/ft_vec_add.o"
-	@echo "... libft/ft_vec_add.i"
-	@echo "... libft/ft_vec_add.s"
+	@echo "... gnl_beta.o"
+	@echo "... gnl_beta.i"
+	@echo "... gnl_beta.s"
+	@echo "... libft/ft_memdup.o"
+	@echo "... libft/ft_memdup.i"
+	@echo "... libft/ft_memdup.s"
 .PHONY : help
 
 

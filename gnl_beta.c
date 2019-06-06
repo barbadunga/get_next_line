@@ -14,71 +14,61 @@
 #include <string.h>
 #include "get_next_line.h"
 
-char	*ft_realloc(char **old, size_t size)
+int		read_line(int fd, char **b_str, char **line, t_vec **vec)
 {
-	char *new;
+	int		i;
+	char	buff[BUFF_SIZE + 1];
+	int		res;
 
-	if (!(new = ft_strnew(size)))
-		return (NULL);
-	if (*old)
+	i = 0;
+	while ((res = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		ft_memcpy(new, *old, ft_strlen(*old));
-		free(*old);
-		*old = NULL;
+		buff[res] = '\0';
+		while (buff[i] != '\n' && buff[i])
+			ft_vec_add(vec, buff + i++);
+		*line = (*vec)->data;
+		free(vec);
+
 	}
-	return (new);
+	return (NO_LINE);
 }
 
-void 	ft_deline(char **tab, char **ptr)
+int		check_line(char **b_str)
 {
-	char	*tmp;
+	char *ptr;
 
-	tmp = ft_strdup(*ptr);
-	free(*tab);
-	*tab = tmp;
+	ptr = ft_strchr(*b_str, '\n');
+	if (!ptr)
+		return (NO_LINE);
+	return (ptr - *b_str);
 }
 
-int		get_next_line(const int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
-	static char	*tab;
-	char		buf[BUF_SIZE + 1];
-	int			byte;
-	char		*ptr;
+	static char	*store[OPEN_MAX];
+	int			res;
+	t_vec		*vec;
+	char		buff[BUFF_SIZE + 1];
 
-	if (fd < 0 || fd > OPEN_MAX || !line || !*line || read(fd, buf, 0) < 0)
-		return (-1);
-
-	while ((byte = read(fd, buf, BUF_SIZE)) > 0)
-	{
-		buf[byte] = '\0';
-		if (!(tab = ft_realloc(&tab, (!tab ? 0 : ft_strlen(tab)) + byte)))
-		{
-			ft_strdel(&tab);
-			return (-1);
-		}
-		tab = ft_strcat(tab, buf);
-		if ((ptr = ft_strchr(tab, '\n')) || (ptr = ft_strchr(tab, '\0')))
-		{
-			*line = ft_strnew(ptr - tab);
-			*line = ft_strncpy(*line, tab, ptr++ - tab);
-			ft_deline(&tab, &ptr);
-			return (1);
-		}
-	}
-	free(tab);
-	tab = NULL;
-	return (0);
+	if (fd < 0 || fd > OPEN_MAX || read(fd, NULL, 0) < 0)
+		return (ERR);
+	if (!store[fd] && !(store[fd] = ft_strnew(BUFF_SIZE)))
+		return (ERR);
+	if (!(vec = ft_vec_init(BUFF_SIZE + 1, sizeof(char))))
+		return (ERR);
+	res = check_line(&store[fd]);
+	if (res == NO_LINE)
+		res = read_line(fd, &store[fd], line, &vec);
+	return (res);
 }
 
 int main()
 {
-	int		fd;
-	char	*line;
+	char **line;
+	int	fd;
 
-	line = "some string";
-	fd = open("file", O_RDONLY);
-	while (get_next_line(fd, &line) > 0)
-		printf("%s\n", line);
-	close(fd);
+	line = NULL;
+	fd = open("file2", O_RDONLY);
+	printf("%d\n", get_next_line(fd, line));
 	return (0);
 }

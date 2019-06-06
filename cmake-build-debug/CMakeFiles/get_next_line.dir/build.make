@@ -57,42 +57,42 @@ include CMakeFiles/get_next_line.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/get_next_line.dir/flags.make
 
-CMakeFiles/get_next_line.dir/ctest.c.o: CMakeFiles/get_next_line.dir/flags.make
-CMakeFiles/get_next_line.dir/ctest.c.o: ../ctest.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mshagga/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/get_next_line.dir/ctest.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/ctest.c.o   -c /Users/mshagga/CLionProjects/get_next_line/ctest.c
+CMakeFiles/get_next_line.dir/gnl_beta.c.o: CMakeFiles/get_next_line.dir/flags.make
+CMakeFiles/get_next_line.dir/gnl_beta.c.o: ../gnl_beta.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mshagga/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/get_next_line.dir/gnl_beta.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/gnl_beta.c.o   -c /Users/mshagga/CLionProjects/get_next_line/gnl_beta.c
 
-CMakeFiles/get_next_line.dir/ctest.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/get_next_line.dir/ctest.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mshagga/CLionProjects/get_next_line/ctest.c > CMakeFiles/get_next_line.dir/ctest.c.i
+CMakeFiles/get_next_line.dir/gnl_beta.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/get_next_line.dir/gnl_beta.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mshagga/CLionProjects/get_next_line/gnl_beta.c > CMakeFiles/get_next_line.dir/gnl_beta.c.i
 
-CMakeFiles/get_next_line.dir/ctest.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/get_next_line.dir/ctest.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mshagga/CLionProjects/get_next_line/ctest.c -o CMakeFiles/get_next_line.dir/ctest.c.s
+CMakeFiles/get_next_line.dir/gnl_beta.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/get_next_line.dir/gnl_beta.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mshagga/CLionProjects/get_next_line/gnl_beta.c -o CMakeFiles/get_next_line.dir/gnl_beta.c.s
 
-CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.o: CMakeFiles/get_next_line.dir/flags.make
-CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.o: ../libft/ft_vec_add.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mshagga/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.o   -c /Users/mshagga/CLionProjects/get_next_line/libft/ft_vec_add.c
+CMakeFiles/get_next_line.dir/libft/ft_memdup.c.o: CMakeFiles/get_next_line.dir/flags.make
+CMakeFiles/get_next_line.dir/libft/ft_memdup.c.o: ../libft/ft_memdup.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mshagga/CLionProjects/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/get_next_line.dir/libft/ft_memdup.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/libft/ft_memdup.c.o   -c /Users/mshagga/CLionProjects/get_next_line/libft/ft_memdup.c
 
-CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mshagga/CLionProjects/get_next_line/libft/ft_vec_add.c > CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.i
+CMakeFiles/get_next_line.dir/libft/ft_memdup.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/get_next_line.dir/libft/ft_memdup.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mshagga/CLionProjects/get_next_line/libft/ft_memdup.c > CMakeFiles/get_next_line.dir/libft/ft_memdup.c.i
 
-CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mshagga/CLionProjects/get_next_line/libft/ft_vec_add.c -o CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.s
+CMakeFiles/get_next_line.dir/libft/ft_memdup.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/get_next_line.dir/libft/ft_memdup.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mshagga/CLionProjects/get_next_line/libft/ft_memdup.c -o CMakeFiles/get_next_line.dir/libft/ft_memdup.c.s
 
 # Object files for target get_next_line
 get_next_line_OBJECTS = \
-"CMakeFiles/get_next_line.dir/ctest.c.o" \
-"CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.o"
+"CMakeFiles/get_next_line.dir/gnl_beta.c.o" \
+"CMakeFiles/get_next_line.dir/libft/ft_memdup.c.o"
 
 # External object files for target get_next_line
 get_next_line_EXTERNAL_OBJECTS =
 
-get_next_line: CMakeFiles/get_next_line.dir/ctest.c.o
-get_next_line: CMakeFiles/get_next_line.dir/libft/ft_vec_add.c.o
+get_next_line: CMakeFiles/get_next_line.dir/gnl_beta.c.o
+get_next_line: CMakeFiles/get_next_line.dir/libft/ft_memdup.c.o
 get_next_line: CMakeFiles/get_next_line.dir/build.make
 get_next_line: ../libft/libft.a
 get_next_line: CMakeFiles/get_next_line.dir/link.txt
