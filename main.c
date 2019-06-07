@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "get_next_line.h"
+#include "ver1.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -570,12 +570,12 @@ void	test11(void)
 
 int		main()
 {
-	system("clear");
-	//test01();
-	test02();
-	test03();
-	test04();
-	test05();
+//	system("clear");
+//	test01();
+//	test02();
+//	test03();
+//	test04();
+//	test05();
 	test06();
 	test07();
 	test08();

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "ver1.h"
 #include <stdio.h>
 
 int		read_line(int fd, char **b_str, t_vec **vec, char **n_pos)

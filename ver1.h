@@ -22,7 +22,7 @@
 # define NO_LINE -2
 # define ERR -1
 # define OK 1
-# define BUFF_SIZE 100
+# define BUFF_SIZE 9
 
 int	get_next_line(const int fd, char **line);
 

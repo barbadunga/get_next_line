@@ -1,137 +1,117 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new.c                                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: AlexandrSergeev <marvin@42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/27 15:57:38 by AlexandrSergeev   #+#    #+#             */
-/*   Updated: 2019/05/27 15:57:38 by AlexandrSergeev  ###   ########.fr       */
+/*   Created: 2019/05/14 10:24:16 by AlexandrSergeev   #+#    #+#             */
+/*   Updated: 2019/05/14 10:24:16 by AlexandrSergeev  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- * 1. Need to check on valgrind
- * 2. Remake logic
-*/
-
-#include "get_next_line.h"
 #include <stdio.h>
+#include <string.h>
+#include "ver1.h"
+#define END 0
 
-char	*ft_realloc(char **old_mem, size_t size)
+/*
+ * 1. Need to fix calculating of n_pos in read_line() FIXED!
+ * 2. Also check free
+ * 3. Watta fuck with tests?!
+ */
+
+int		read_line(int fd, char **b_str, t_vec **vec, char **n_pos)
 {
-	char	*new_mem;
+	int		i;
+	int		size;
+	int		pos;
+	char	buff[BUFF_SIZE + 1];
 
-	if (!(new_mem = ft_strnew(size)))
-		return (NULL);
-	if (*old_mem)
+	pos = NO_LINE;
+	while (pos == NO_LINE && (size = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		ft_memcpy(new_mem, *old_mem, ft_strlen(*old_mem));
-		free(*old_mem);
-		*old_mem = NULL;
+		buff[size] = '\0';
+		i = 0;
+		while (i != size)
+		{
+			if (pos == NO_LINE && buff[i] == '\n')
+				pos = (*vec)->total;
+			ft_vec_add(vec, buff + i++);
+		}
 	}
-	return (new_mem);
+	ft_vec_add(vec, "\0");
+	*b_str = *b_str ? ft_strjoin(*b_str, (*vec)->data) : (*vec)->data;
+	free(*vec);
+	return (!size ? END : OK);
 }
 
-char	*ft_do(char **old_mem, char *join, size_t size)
+int		init(int fd, t_vec **vec)
 {
-	char	*new_mem;
-
-	if (!(new_mem = (char*)malloc(size + 1)))
-		return (NULL);
-	new_mem[size + 1] = '\0';
-	if (*old_mem)
-	{
-		ft_memcpy(new_mem, *old_mem, ft_strlen(*old_mem));
-		free(*old_mem);
-		*old_mem = NULL;
-	}
-	return (new_mem);
-}
-
-int		get_line(char **s_str, char **line)
-{
-	size_t	s_len;
-	char	*t_str;
-	char	*n_pos;
-
-	if (!*s_str)
-		return(NO_LINE);
-	n_pos = ft_strchr(*s_str, '\n');
-	s_len = n_pos ? n_pos - *s_str : 0;
-	if (!n_pos)
-		return (NO_LINE);
-	if (!(*line = ft_strnew(s_len)))
+	if (fd < 0 || fd > OPEN_MAX || read(fd, NULL, 0) < 0)
 		return (ERR);
-	*line = ft_strncpy(*line, *s_str, s_len++);
-	if (!(t_str = ft_strsub(*s_str, s_len, ft_strlen(n_pos))))
+	if (!(*vec = ft_vec_init(BUFF_SIZE + 1, sizeof(char))))
 		return (ERR);
-	free(*s_str);
-	*s_str = t_str;
 	return (OK);
 }
 
-int		read_line(int fd, char **b_str, char **line)
+int		cut_line(char **b_str, char **line, size_t n_pos)
 {
-	char	buff[BUFF_SIZE + 1];
-	int		res;
-	size_t	s_len;
+	char	*t_str;
 
-	res = 1;
-	while (res >  0)
-	{
-		if ((res = read(fd, buff, BUFF_SIZE)) < 0)
-			return (ERR);
-		if (res)
-		{
-			buff[res] = '\0';
-			s_len = *b_str ? ft_strlen(*b_str) : 0;
-			*b_str = ft_realloc(b_str, s_len + res);
-			*b_str = ft_strcat(*b_str, buff);
-			if (ft_strchr(*b_str, '\n'))
-				return (OK);
-		}
-	}
-	if (*b_str)
-	{
-		*line = ft_strdup(*b_str);
-		res = 1;
-	}
-	return (res);
+	if (!(*line = ft_strnew(n_pos)))
+		return (ERR);
+	ft_memcpy(*line, *b_str, n_pos++);
+	if (!(t_str = ft_strdup(*b_str + n_pos)))
+		return (ERR);
+	free(*b_str);
+	*b_str = t_str;
+	return (OK);
 }
 
-int		get_next_line(const int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
 	static char	*store[OPEN_MAX];
-	char		buf[BUFF_SIZE + 1];
 	int			res;
+	t_vec		*vec;
+	char 		*n_pos;
 
-	if (fd < 0 || fd > OPEN_MAX || read(fd, buf, 0) < 0) // !line || !*line ||
-			return (-1);
-	res = get_line(&store[fd], line);
-	if (res == OK)
-		return (OK);
+	if ((res = init(fd, &vec)) == ERR)
+		return (res);
+	n_pos = !store[fd] ? NULL :ft_strchr(store[fd], '\n');
+	res = !n_pos ? NO_LINE : OK;
 	if (res == NO_LINE)
+		res = read_line(fd, &store[fd], &vec, &n_pos);
+	n_pos = ft_strchr(store[fd], '\n');
+	if (n_pos)
+		res = cut_line(&store[fd], line, n_pos - store[fd]);
+	if (!res && *store[fd])
 	{
-		res = read_line(fd, &store[fd], line);
-		res = res > 0 && *line ? get_line(&store[fd], line) : res;
+		*line = store[fd];
+		free(store[fd]);
+		store[fd] = NULL;
+		return (OK);
 	}
-	if (!res)
-		ft_strdel(&store[fd]);
+	if (res == ERR)
+	{
+		free(store[fd]);
+		store[fd] = NULL;
+	}
 	return (res);
 }
 
-/* int main()
-{
-	char	*line;
-	int		fd;
-	int		gnl;
-
-	fd = open("tests/01_test.txt", O_RDONLY);
-	if (!(line = (char*)malloc(1)))
-		return (0);
-	while ((gnl = get_next_line(fd, &line)) == 1)
-		printf("GNL[%d] : %s\n", gnl, line);
-	printf("GNL[%d] : %s\n", gnl, line);
-	return (0);
-} */
+//int main()
+//{
+//	char *line;
+//	int	fd;
+//
+//	line = NULL;
+//	fd = open("file2", O_RDONLY);
+//	printf("%d\n", get_next_line(fd, &line));
+//	printf("%s\n", line);
+//	printf("%d\n", get_next_line(fd, &line));
+//	printf("%s\n", line);
+//	printf("%d\n", get_next_line(fd, &line));
+//	// free(*line);
+//	return (0);
+//}
