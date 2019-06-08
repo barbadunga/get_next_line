@@ -10,18 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include "ver1.h"
-#define END 0
+#include "get_next_line.h"
 
-/*
- * 1. Need to fix calculating of n_pos in read_line() FIXED!
- * 2. Also check free
- * 3. Watta fuck with tests?!
- */
-
-int		read_line(int fd, char **b_str, t_vec **vec, char **n_pos)
+int		read_line(int fd, char **b_str, t_vec **vec)
 {
 	int		i;
 	int		size;
@@ -46,7 +37,7 @@ int		read_line(int fd, char **b_str, t_vec **vec, char **n_pos)
 	return (!size ? END : OK);
 }
 
-int		init(int fd, t_vec **vec)
+int		gnl_init(int fd, t_vec **vec)
 {
 	if (fd < 0 || fd > OPEN_MAX || read(fd, NULL, 0) < 0)
 		return (ERR);
@@ -74,44 +65,24 @@ int		get_next_line(int fd, char **line)
 	static char	*store[OPEN_MAX];
 	int			res;
 	t_vec		*vec;
-	char 		*n_pos;
+	char		*n_pos;
 
-	if ((res = init(fd, &vec)) == ERR)
+	if ((res = gnl_init(fd, &vec)) == ERR)
 		return (res);
-	n_pos = !store[fd] ? NULL :ft_strchr(store[fd], '\n');
+	n_pos = !store[fd] ? NULL : ft_strchr(store[fd], '\n');
 	res = !n_pos ? NO_LINE : OK;
 	if (res == NO_LINE)
-		res = read_line(fd, &store[fd], &vec, &n_pos);
+		res = read_line(fd, &store[fd], &vec);
 	n_pos = ft_strchr(store[fd], '\n');
 	if (n_pos)
 		res = cut_line(&store[fd], line, n_pos - store[fd]);
 	if (!res && *store[fd])
 	{
-		*line = store[fd];
-		free(store[fd]);
-		store[fd] = NULL;
+		*line = ft_strdup(store[fd]);
+		ft_strdel(&store[fd]);
 		return (OK);
 	}
 	if (res == ERR)
-	{
-		free(store[fd]);
-		store[fd] = NULL;
-	}
+		ft_strdel(&store[fd]);
 	return (res);
 }
-
-//int main()
-//{
-//	char *line;
-//	int	fd;
-//
-//	line = NULL;
-//	fd = open("file2", O_RDONLY);
-//	printf("%d\n", get_next_line(fd, &line));
-//	printf("%s\n", line);
-//	printf("%d\n", get_next_line(fd, &line));
-//	printf("%s\n", line);
-//	printf("%d\n", get_next_line(fd, &line));
-//	// free(*line);
-//	return (0);
-//}
