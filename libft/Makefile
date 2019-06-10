@@ -78,6 +78,7 @@ SOURCES = ft_atoi.c \
     ft_vec_add.c  \
     ft_vec_del.c  \
     ft_vec_init.c  \
+    ft_vec_resize.c \
 
 OBJECTS = $(SOURCES:%.c=%.o)
 
