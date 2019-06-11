@@ -85,7 +85,7 @@ int		read_line(int fd, char **b_str, t_vec **vec)
 	if ((*vec)->total > 0)
 		res = bufferize(vec, b_str);
 	ret = !ret ? END : OK;
-	return ( res != ERR ? ret : res);
+	return (res != ERR ? ret : res);
 }
 
 int		gnl_init(int fd, t_vec **vec)
@@ -128,7 +128,7 @@ int		get_next_line(int fd, char **line)
 	if (res == NO_LINE)
 		res = read_line(fd, &store[fd], &vec);
 	n_pos = !store[fd] ? NULL : ft_strchr(store[fd], '\n');
-	n_pos = n_pos;
+	ft_vec_del(&vec);
 	if (n_pos)
 		res = cut_line(&store[fd], line, n_pos - store[fd]);
 	if (!res && store[fd] && *store[fd])
