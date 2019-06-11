@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 //int		read_line(int fd, char **b_str, t_vec **vec)
 //{
@@ -33,45 +32,60 @@
 //			ft_vec_add(vec, buff + i++);
 //		}
 //	}
-//	if (*((char*)(*vec)->data))
+//	if ((*vec)->total > 0)
 //	{
 //		ft_vec_add(vec, "\0");
 //		tmp = *b_str;
 //		(*vec) = (*vec)->capacity > (*vec)->total ? ft_vec_resize(vec) : (*vec);
-//		*b_str = *b_str ? ft_strjoin(*b_str, (*vec)->data) : ft_strdup(
-//				(*vec)->data);
+//		*b_str = *b_str ? ft_strjoin(*b_str, (*vec)->data) :
+//				 ft_strdup((*vec)->data);
 //		ft_strdel(&tmp);
 //	}
 //	return (!size ? END : OK);
 //}
 
+int		bufferize(t_vec **vec, char **b_str)
+{
+	char	*tmp;
+
+	ft_vec_add(vec, "\0");
+	tmp = *b_str;
+	if ((*vec)->capacity > (*vec)->total)
+		(*vec) = ft_vec_resize(vec);
+	if (*b_str)
+		*b_str = ft_strjoin(*b_str, (*vec)->data);
+	else
+		*b_str = ft_strdup((*vec)->data);
+	if (!(*b_str))
+		return (ERR);
+	ft_strdel(&tmp);
+	return (OK);
+}
+
 int		read_line(int fd, char **b_str, t_vec **vec)
 {
 	int		i;
-	int		size;
-	int		readed;
+	int		ret;
+	int		pos;
 	char	buff[BUFF_SIZE + 1];
-	char	*tmp;
+	int		res;
 
-	readed = 0;
-	while ((size = read(fd, buff, BUFF_SIZE)) > 0)
+	pos = NO_LINE;
+	while (pos == NO_LINE && (ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		buff[size] = '\0';
+		buff[ret] = '\0';
 		i = 0;
-		readed += size;
-		while (i != size)
+		while (i != ret)
+		{
+			if (pos == NO_LINE && buff[i] == '\n')
+				pos = (*vec)->total;
 			ft_vec_add(vec, buff + i++);
+		}
 	}
-	if (readed)
-	{
-		ft_vec_add(vec, "\0");
-		tmp = *b_str;
-		(*vec) = (*vec)->capacity > (*vec)->total ? ft_vec_resize(vec) : (*vec);
-		*b_str = *b_str ? ft_strjoin(*b_str, (*vec)->data) : ft_strdup(
-				(*vec)->data);
-		ft_strdel(&tmp);
-	}
-	return (!size ? END : OK);
+	if ((*vec)->total > 0)
+		res = bufferize(vec, b_str);
+	ret = !ret ? END : OK;
+	return ( res != ERR ? ret : res);
 }
 
 int		gnl_init(int fd, t_vec **vec)
@@ -79,7 +93,10 @@ int		gnl_init(int fd, t_vec **vec)
 	if (fd < 0 || fd > OPEN_MAX || read(fd, NULL, 0) < 0)
 		return (ERR);
 	if (!(*vec = ft_vec_init(BUFF_SIZE, sizeof(char))))
+	{
+		free(*vec);
 		return (ERR);
+	}
 	return (OK);
 }
 
@@ -105,46 +122,22 @@ int		get_next_line(int fd, char **line)
 	char		*n_pos;
 
 	if ((res = gnl_init(fd, &vec)) == ERR)
-	{
-
 		return (res);
-	}
 	n_pos = !store[fd] ? NULL : ft_strchr(store[fd], '\n');
 	res = !n_pos ? NO_LINE : OK;
 	if (res == NO_LINE)
 		res = read_line(fd, &store[fd], &vec);
 	n_pos = !store[fd] ? NULL : ft_strchr(store[fd], '\n');
-	ft_vec_del(&vec);
+	n_pos = n_pos;
 	if (n_pos)
 		res = cut_line(&store[fd], line, n_pos - store[fd]);
-	if (!res && *store[fd])
+	if (!res && store[fd] && *store[fd])
 	{
 		*line = ft_strdup(store[fd]);
 		ft_strdel(&store[fd]);
 		return (OK);
 	}
-	if (res == ERR)
-		ft_strdel(&store[fd]);
-	if (!res)
+	if (!res || res == ERR)
 		ft_strdel(&store[fd]);
 	return (res);
-}
-
-int main()
-{
-	int		fd;
-	char	*line;
-
-	line = NULL;
-	fd = open("file2", O_RDONLY);
-	while (get_next_line(fd, &line) == 1)
-	{
-		// printf("gnl %s\n", line);
-		ft_strdel(&line);
-	}
-	//get_next_line(fd, &line);
-	//printf("gnl %s\n", line);
-	ft_strdel(&line);
-	close(fd);
-	return (0);
 }
