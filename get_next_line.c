@@ -12,39 +12,7 @@
 
 #include "get_next_line.h"
 
-//int		read_line(int fd, char **b_str, t_vec **vec)
-//{
-//	int		i;
-//	int		size;
-//	int		pos;
-//	char	buff[BUFF_SIZE + 1];
-//	char	*tmp;
-//
-//	pos = NO_LINE;
-//	while (pos == NO_LINE && (size = read(fd, buff, BUFF_SIZE)) > 0)
-//	{
-//		buff[size] = '\0';
-//		i = 0;
-//		while (i != size)
-//		{
-//			if (pos == NO_LINE && buff[i] == '\n')
-//				pos = (*vec)->total;
-//			ft_vec_add(vec, buff + i++);
-//		}
-//	}
-//	if ((*vec)->total > 0)
-//	{
-//		ft_vec_add(vec, "\0");
-//		tmp = *b_str;
-//		(*vec) = (*vec)->capacity > (*vec)->total ? ft_vec_resize(vec) : (*vec);
-//		*b_str = *b_str ? ft_strjoin(*b_str, (*vec)->data) :
-//				 ft_strdup((*vec)->data);
-//		ft_strdel(&tmp);
-//	}
-//	return (!size ? END : OK);
-//}
-
-int		bufferize(t_vec **vec, char **b_str)
+int		add_to_store(t_vec **vec, char **b_str)
 {
 	char	*tmp;
 
@@ -71,6 +39,7 @@ int		read_line(int fd, char **b_str, t_vec **vec)
 	int		res;
 
 	pos = NO_LINE;
+	res = OK;
 	while (pos == NO_LINE && (ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
@@ -83,7 +52,7 @@ int		read_line(int fd, char **b_str, t_vec **vec)
 		}
 	}
 	if ((*vec)->total > 0)
-		res = bufferize(vec, b_str);
+		res = add_to_store(vec, b_str);
 	ret = !ret ? END : OK;
 	return (res != ERR ? ret : res);
 }
